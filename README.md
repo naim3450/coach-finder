@@ -1,4 +1,4 @@
-# 🚀 Project Name
+# 🚀 Coach Finder
 
 A full-stack web application featuring:
 
