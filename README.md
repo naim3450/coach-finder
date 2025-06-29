@@ -6,6 +6,7 @@ A full-stack web application featuring:
 - 🛠️ Admin Dashboard (React + Redux)
 - 🔙 Backend (Node.js / Express)
 - 🗄️ Database (MongoDB / PostgreSQL / MySQL)
+- 🔐 Firebase Authentication (Email/Password & Google Sign-In)
 
 ---
 
@@ -23,24 +24,26 @@ A full-stack web application featuring:
 
 ## ✨ Overview
 
-This project is a full-stack solution consisting of:
+This project includes:
 
-- **UI Frontend** – Built with **React.js** and **Redux** for user interaction.
-- **Admin Frontend** – Separate dashboard using **React.js** and **Redux** for admin control.
-- **Backend** – REST API built with **Node.js** and **Express.js**.
-- **Database** – Stores persistent data using a relational or NoSQL database.
+- **UI Frontend** – Built with **React.js**, **Redux**, and **Firebase Authentication**.
+- **Admin Dashboard** – Also built with **React.js** + **Redux**, with secure access.
+- **Backend** – REST API using **Node.js** and **Express**.
+- **Database** – Stores persistent data in **MongoDB**, **PostgreSQL**, or **MySQL**.
+- **Authentication** – User login/signup with Firebase and Google OAuth2.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer         | Tech                          |
-|---------------|-------------------------------|
-| Frontend      | React.js, Redux, Axios        |
-| Admin Panel   | React.js, Redux, Material UI  |
-| Backend       | Node.js, Express              |
-| Database      | MongoDB / PostgreSQL / MySQL  |
-| Dev Tools     | VSCode, Postman, Git          |
+| Layer         | Tech                                      |
+|---------------|-------------------------------------------|
+| Frontend      | React.js, Redux, Firebase Auth, Axios     |
+| Admin Panel   | React.js, Redux, Material UI              |
+| Backend       | Node.js, Express                          |
+| Database      | MongoDB / PostgreSQL / MySQL              |
+| Auth          | Firebase Authentication, Google Sign-In   |
+| Dev Tools     | VSCode, Postman, Git                      |
 
 ---
 
