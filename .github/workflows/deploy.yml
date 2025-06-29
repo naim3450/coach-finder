@@ -1,0 +1,82 @@
+on:
+  push:
+    branches: main
+name: Deploy Coach Finder
+jobs:
+  web-deploy:
+    name: Build and Deploy
+    runs-on: self-hosted
+    steps:
+      # Step 1: Checkout the latest code
+      - name: Checkout Latest Code
+        uses: actions/checkout@v3
+        continue-on-error: false
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+        continue-on-error: false
+
+      # Step 3: Copy environment variables to the server
+      - name: Set Environment Variables
+        env:
+          SERVER_ENV: ${{ secrets.SERVER_ENV }}
+          MEDIA_ENV: ${{ secrets.MEDIA_ENV }}
+        run: |
+          echo "$SERVER_ENV" > server/.env
+          echo "$MEDIA_ENV" > media/.env
+        continue-on-error: false
+
+      # Step 4: Build and deploy the backend
+      - name: Deploy Backend Service
+        run: |
+          echo "Deploying Backend..."
+          cd server
+          npm install
+          npm run build && echo "Backend deployed successfully!" || exit 1
+          cd ..
+
+      # Step 5: Build and deploy the media service
+      - name: Deploy Media Service
+        run: |
+          echo "Deploying Media Service..."
+          cd media
+          npm install
+          npm run build && echo "Media Service deployed successfully!" || exit 1
+          cd ..
+
+      # Step 6: Build and deploy the client
+      - name: Deploy Client Application
+        run: |
+          echo "Deploying Client..."
+          cd client
+          npm install
+          npm run build && echo "Client deployed successfully!" || exit 1
+          cd ..
+
+      # Step 7: Build and deploy the dashboard
+      - name: Deploy Dashboard Application
+        run: |
+          echo "Deploying Dashboard..."
+          cd dashboard
+          npm install
+          npm run build && echo "Dashboard deployed successfully!" || exit 1
+          cd ..
+
+      # Step 8: Build and deploy the group service
+      - name: Deploy Group Service
+        run: |
+          echo "Deploying Group Service..."
+          cd group
+          npm install
+          npm run build && echo "Group Service deployed successfully!" || exit 1
+          cd ..
+
+      # Step 9: Restart PM2 processes and Nginx
+      - name: Restart PM2 and Nginx
+        run: |
+          echo "Restarting PM2 processes and Nginx..."
+          pm2 restart all && echo "PM2 processes restarted successfully!" || exit 1
+          sudo service nginx restart && echo "Nginx restarted successfully!" || exit 1
